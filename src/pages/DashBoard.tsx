@@ -63,11 +63,8 @@ const Dashboard: React.FC = () => {
           <div className="lg:col-span-2">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold">To-Do</h2>
-              <button 
-                onClick={() => {
-                  setShowAddTask(true);
-                  handleAddTask(tasks[tasks.length - 1]);
-                }}
+              <button
+                onClick={() => setShowAddTask(true)} // Only show the form
                 className="text-sm text-blue-600 hover:underline"
               >
                 + Add task
@@ -127,7 +124,7 @@ const Dashboard: React.FC = () => {
       </div>
 
       {showAddTask && (
-        <AddFile onClose={() => setShowAddTask(false)} />
+        <AddFile onAddTask={handleAddTask} onClose={() => setShowAddTask(false)} />
       )}
     </section>
   );

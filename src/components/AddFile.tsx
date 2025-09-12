@@ -9,7 +9,7 @@ interface Task {
 }
 
 interface AddFileProps {
-  onAddTask: (task: Task) => void;
+  onAddTask?: (task: Task) => void;
   onClose: () => void;
 }
 
@@ -39,7 +39,7 @@ const AddFile: React.FC<AddFileProps> = ({ onAddTask, onClose }) => {
   // Handle form submit
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onAddTask(formData); // ✅ send task up to Dashboard
+    onAddTask?.(formData); 
     setFormData({
       title: "",
       date: "",
@@ -62,10 +62,8 @@ const AddFile: React.FC<AddFileProps> = ({ onAddTask, onClose }) => {
             Go Back
           </button>
         </div>
-
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Title */}
+ 
+        <form onSubmit={handleSubmit} className="space-y-4"> 
           <input
             type="text"
             name="title"
